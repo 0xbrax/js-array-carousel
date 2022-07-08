@@ -67,7 +67,7 @@ main {
     object-position: center;
 }
 
-.arrow-up {
+#arrow-up {
     position: absolute;
     top: 5px;
     left: 50%;
@@ -76,7 +76,7 @@ main {
     font-size: 25px;
 }
 
-.arrow-down {
+#arrow-down {
     position: absolute;
     bottom: 5px;
     left: 50%;
