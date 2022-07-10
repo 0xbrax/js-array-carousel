@@ -24,39 +24,147 @@ thumb.innerHTML += `<div id="arrow-down"><i class="fa-solid fa-circle-chevron-do
 
 
 
+console.log(`INFO: Possibilità di cliccare sui singoli thumb e scorrimento infinito attraverso le frecce della tastiera o cliccando sui bottoni.`)
+
 const arrowUp = document.getElementById('arrow-up');
 const arrowDown = document.getElementById('arrow-down');
-let imgMain = document.getElementsByClassName('item-img');
+let imgMain = document.querySelectorAll('.item-img');
 let imgSec = document.querySelectorAll('.sec-img');
 
-let imgSelected = 0;
+let imgSelected = [0, 1, 2, 3, 4];
+const imgThumb = document.getElementsByClassName('sec-img');
+let clicked;
 
-arrowDown.addEventListener('click', function() {
+for (let n = 0; n < imgThumb.length; n++) {
+    imgThumb[n].addEventListener('click', 
+    function() {
+        clicked = parseInt([n]);
+
+        for (let i = 0; i < imgSelected.length; i++) {
+            imgSelected = parseInt([i]);
+        }
+
+        imgMain[imgSelected].classList.remove('show');
+        imgSec[imgSelected].classList.remove('active');
+        imgMain[imgSelected].classList.add('no-show');
+
+        if (clicked == 0) {
+            imgMain[0].classList.add('show');
+            imgSec[0].classList.add('active');
+            imgMain[0].classList.remove('no-show');
+
+        } else if (clicked == 1) {
+            imgMain[1].classList.add('show');
+            imgSec[1].classList.add('active');
+            imgMain[1].classList.remove('no-show');
+
+        } else if (clicked == 2) {
+            imgMain[2].classList.add('show');
+            imgSec[2].classList.add('active');
+            imgMain[2].classList.remove('no-show');
+
+        } else if (clicked == 3) {
+            imgMain[3].classList.add('show');
+            imgSec[3].classList.add('active');
+            imgMain[3].classList.remove('no-show');
+
+        } else if (clicked == 4) {
+            imgMain[4].classList.add('show');
+            imgSec[4].classList.add('active');
+            imgMain[4].classList.remove('no-show');
+        }
+
+        imgSelected = clicked;
+    });
+}
+
+arrowDown.addEventListener('click', 
+function keyDown() {
+    for (let i = 0; i < imgSelected.length; i++) {
+        imgSelected = parseInt([i]);
+    }
+
+    imgMain[imgSelected].classList.remove('show');
+    imgSec[imgSelected].classList.remove('active');
+    imgMain[imgSelected].classList.add('no-show');
+
     if (imgSelected == img.length - 1) {
-        imgMain[imgSelected].classList.remove('show');
-        imgSec[imgSelected].classList.remove('active');
         imgSelected = 0;
+
     } else if (imgSelected >= 0) {
-        imgMain[imgSelected].classList.remove('show');
-        imgSec[imgSelected].classList.remove('active');
         imgSelected++;
     }
 
+    imgMain[imgSelected].classList.remove('no-show');
     imgMain[imgSelected].classList.add('show');
     imgSec[imgSelected].classList.add('active');
 });
 
-arrowUp.addEventListener('click', function() {
+arrowUp.addEventListener('click', 
+function() {
+    for (let i = 0; i < imgSelected.length; i++) {
+        imgSelected = parseInt([i]);
+    }
+
+    imgMain[imgSelected].classList.remove('show');
+    imgSec[imgSelected].classList.remove('active');
+    imgMain[imgSelected].classList.add('no-show');
+
     if (imgSelected == 0) {
-        imgMain[imgSelected].classList.remove('show');
-        imgSec[imgSelected].classList.remove('active');
         imgSelected = img.length - 1;
+
     } else if (imgSelected > 0) {
-        imgMain[imgSelected].classList.remove('show');
-        imgSec[imgSelected].classList.remove('active');
         imgSelected--;
     }
 
+    imgMain[imgSelected].classList.remove('no-show');
     imgMain[imgSelected].classList.add('show');
     imgSec[imgSelected].classList.add('active');
+});
+
+document.querySelector("body").addEventListener("keydown", 
+function(event) {
+    switch (event.key) {
+        case "ArrowDown":
+            for (let i = 0; i < imgSelected.length; i++) {
+                imgSelected = parseInt([i]);
+            }
+        
+            imgMain[imgSelected].classList.remove('show');
+            imgSec[imgSelected].classList.remove('active');
+            imgMain[imgSelected].classList.add('no-show');
+        
+            if (imgSelected == img.length - 1) {
+                imgSelected = 0;
+        
+            } else if (imgSelected >= 0) {
+                imgSelected++;
+            }
+        
+            imgMain[imgSelected].classList.remove('no-show');
+            imgMain[imgSelected].classList.add('show');
+            imgSec[imgSelected].classList.add('active');
+        break;
+
+        case "ArrowUp":
+            for (let i = 0; i < imgSelected.length; i++) {
+                imgSelected = parseInt([i]);
+            }
+        
+            imgMain[imgSelected].classList.remove('show');
+            imgSec[imgSelected].classList.remove('active');
+            imgMain[imgSelected].classList.add('no-show');
+        
+            if (imgSelected == 0) {
+                imgSelected = img.length - 1;
+        
+            } else if (imgSelected > 0) {
+                imgSelected--;
+            }
+        
+            imgMain[imgSelected].classList.remove('no-show');
+            imgMain[imgSelected].classList.add('show');
+            imgSec[imgSelected].classList.add('active');
+        break;
+    }
 });

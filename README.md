@@ -16,4 +16,5 @@ INFO: Bonus:
 - Aggiungere miniature
 - Rendi cliccabili le miniature
 - Integra frecce per muovere il carousel
+- Inserisci fx di transizione/animazione
 ********
