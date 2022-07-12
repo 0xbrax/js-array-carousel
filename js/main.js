@@ -79,7 +79,31 @@ for (let n = 0; n < imgThumb.length; n++) {
 }
 
 arrowDown.addEventListener('click', 
-function keyDown() {
+function() {
+    keybtnDown();
+});
+
+arrowUp.addEventListener('click', 
+function() {
+    keybtnUp();
+});
+
+document.querySelector("body").addEventListener("keydown", 
+function(event) {
+    switch (event.key) {
+        case "ArrowDown":
+            keybtnDown();
+        break;
+
+        case "ArrowUp":
+            keybtnUp();
+        break;
+    }
+});
+
+
+
+function keybtnDown() {
     for (let i = 0; i < imgSelected.length; i++) {
         imgSelected = parseInt([i]);
     }
@@ -98,10 +122,9 @@ function keyDown() {
     imgMain[imgSelected].classList.remove('no-show');
     imgMain[imgSelected].classList.add('show');
     imgSec[imgSelected].classList.add('active');
-});
+}
 
-arrowUp.addEventListener('click', 
-function() {
+function keybtnUp() {
     for (let i = 0; i < imgSelected.length; i++) {
         imgSelected = parseInt([i]);
     }
@@ -120,51 +143,4 @@ function() {
     imgMain[imgSelected].classList.remove('no-show');
     imgMain[imgSelected].classList.add('show');
     imgSec[imgSelected].classList.add('active');
-});
-
-document.querySelector("body").addEventListener("keydown", 
-function(event) {
-    switch (event.key) {
-        case "ArrowDown":
-            for (let i = 0; i < imgSelected.length; i++) {
-                imgSelected = parseInt([i]);
-            }
-        
-            imgMain[imgSelected].classList.remove('show');
-            imgSec[imgSelected].classList.remove('active');
-            imgMain[imgSelected].classList.add('no-show');
-        
-            if (imgSelected == img.length - 1) {
-                imgSelected = 0;
-        
-            } else if (imgSelected >= 0) {
-                imgSelected++;
-            }
-        
-            imgMain[imgSelected].classList.remove('no-show');
-            imgMain[imgSelected].classList.add('show');
-            imgSec[imgSelected].classList.add('active');
-        break;
-
-        case "ArrowUp":
-            for (let i = 0; i < imgSelected.length; i++) {
-                imgSelected = parseInt([i]);
-            }
-        
-            imgMain[imgSelected].classList.remove('show');
-            imgSec[imgSelected].classList.remove('active');
-            imgMain[imgSelected].classList.add('no-show');
-        
-            if (imgSelected == 0) {
-                imgSelected = img.length - 1;
-        
-            } else if (imgSelected > 0) {
-                imgSelected--;
-            }
-        
-            imgMain[imgSelected].classList.remove('no-show');
-            imgMain[imgSelected].classList.add('show');
-            imgSec[imgSelected].classList.add('active');
-        break;
-    }
-});
+}
